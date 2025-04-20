@@ -1,5 +1,24 @@
-const FORCED_DAY = 1; // 1 = Monday (0 = Sunday, ..., 5 = Friday)
+function getForcedDay() {
+  const urlParams = new URLSearchParams(window.location.search);
+  const paramDay = urlParams.get('day');
 
+  if (paramDay !== null && !isNaN(paramDay)) {
+    const forcedDay = parseInt(paramDay);
+    if (forcedDay >= 0 && forcedDay <= 6) {
+      localStorage.setItem('FORCED_DAY', forcedDay);
+      return forcedDay;
+    }
+  }
+
+  const storedDay = localStorage.getItem('FORCED_DAY');
+  if (storedDay !== null && !isNaN(storedDay)) {
+    return parseInt(storedDay);
+  }
+
+  return new Date().getDay(); // fallback to actual day
+}
+
+const today = getForcedDay();
 
 function rotateInnerRing() {
   const ring = document.querySelector('#inner-ring');
@@ -18,10 +37,10 @@ const puzzles = [
 ];
 
 function getDailyKey() {
-  const today = new Date().toISOString().slice(0, 10);
+  const todayStr = new Date().toISOString().slice(0, 10);
   let hash = 0;
-  for (let i = 0; i < today.length; i++) {
-    hash = today.charCodeAt(i) + ((hash << 5) - hash);
+  for (let i = 0; i < todayStr.length; i++) {
+    hash = todayStr.charCodeAt(i) + ((hash << 5) - hash);
   }
   return (hash % 25) + 1;
 }
@@ -43,10 +62,9 @@ function caesarEncrypt(text, shift) {
 
 function displayPuzzle() {
   const shift = getDailyKey();
-  const day = new Date().getDay();
 
-  if (day >= 1 && day <= 5) {
-    const puzzle = caesarEncrypt(puzzles[day - 1], shift);
+  if (today >= 1 && today <= 5) {
+    const puzzle = caesarEncrypt(puzzles[today - 1], shift);
     document.getElementById('daily-puzzle').textContent = puzzle;
   } else {
     document.getElementById('daily-puzzle').innerHTML = "Come back Monday to Friday for a new cipher puzzle!";
@@ -55,7 +73,6 @@ function displayPuzzle() {
 
 function autoSizeInputToPuzzle() {
   const input = document.getElementById('user-answer');
-  const today = new Date().getDay();
 
   if (today >= 1 && today <= 5) {
     const answerLength = puzzles[today - 1].length;
@@ -69,7 +86,6 @@ function autoSizeInputToPuzzle() {
 function checkAnswer() {
   const input = document.getElementById('user-answer').value.trim().toUpperCase();
   const shift = getDailyKey();
-  const today = new Date().getDay();
   const successMessages = [
     "💥 It’s outta here! Home run!",
     "📣 The crowd goes wild! You nailed it!",
@@ -79,12 +95,19 @@ function checkAnswer() {
   ];
   const feedbackElement = document.getElementById('feedback-reaction');
 
+  // clear any previous animation styles
+  feedbackElement.style.animation = '';
+  void feedbackElement.offsetWidth; // force reflow to restart animations
+
   if (today >= 1 && today <= 5) {
     const correct = puzzles[today - 1];
 
     if (input === correct) {
+      // play cheer sound only once
       const cheer = document.getElementById('cheer-sound');
-      cheer.play();
+      if (cheer.paused) {
+        cheer.play();
+      }
 
       const randomSuccess = successMessages[Math.floor(Math.random() * successMessages.length)];
       feedbackElement.innerHTML = randomSuccess;
@@ -92,16 +115,24 @@ function checkAnswer() {
       feedbackElement.style.display = "block";
       feedbackElement.style.animation = 'popEffect 0.5s ease-out forwards';
 
-      setTimeout(() => {
+      // reset popup visibility timer
+      if (window._feedbackTimer) {
+        clearTimeout(window._feedbackTimer);
+      }
+      window._feedbackTimer = setTimeout(() => {
         feedbackElement.style.display = "none";
-      }, cheer.duration * 1000);
+      }, 3000);
     } else {
       feedbackElement.innerHTML = "❌ Not quite. Try again!";
       feedbackElement.style.color = "#c0392b";
       feedbackElement.style.display = "block";
       feedbackElement.style.animation = 'shakeEffect 0.5s ease-out forwards';
 
-      setTimeout(() => {
+      // reset error visibility timer
+      if (window._feedbackTimer) {
+        clearTimeout(window._feedbackTimer);
+      }
+      window._feedbackTimer = setTimeout(() => {
         feedbackElement.style.animation = '';
         feedbackElement.style.display = "none";
       }, 2000);
@@ -115,20 +146,19 @@ window.onload = function () {
   displayCipherKey();
   displayPuzzle();
   autoSizeInputToPuzzle();
-document.getElementById('info-btn').onclick = () => {
-  document.getElementById('info-modal').style.display = 'flex';
-};
 
-document.querySelector('.close-btn').onclick = () => {
-  document.getElementById('info-modal').style.display = 'none';
-};
+  document.getElementById('info-btn').onclick = () => {
+    document.getElementById('info-modal').style.display = 'flex';
+  };
 
-window.onclick = function (e) {
-  const modal = document.getElementById('info-modal');
-  if (e.target === modal) {
-    modal.style.display = 'none';
-  }
-};
+  document.querySelector('.close-btn').onclick = () => {
+    document.getElementById('info-modal').style.display = 'none';
+  };
 
-
+  window.onclick = function (e) {
+    const modal = document.getElementById('info-modal');
+    if (e.target === modal) {
+      modal.style.display = 'none';
+    }
+  };
 };
