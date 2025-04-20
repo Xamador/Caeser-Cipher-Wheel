@@ -1,0 +1,399 @@
+/* =====================
+   🎨 THEME VARIABLES
+   ===================== */
+:root {
+  --bg-color: #2f241d;                     /* Padres brown */
+  --text-color: #fdf8e4;                   /* Cream for body and contrast */
+  --accent-color: #ffc425;                 /* Padres yellow */
+  --dark-color: #1c140f;                   /* Deeper brown for outlines */
+
+  --outer-ring-color: #002d72;             /* Grass green for outer field ring */
+  --outer-ring-text-color: #fdf8e4;        /* Bright yellow lettering */
+  --inner-ring-color: #c8102e;             /* Infield dirt tone (sienna/brown) */
+  --inner-ring-text-color: #fdf8e4;        /* Cream text inside */
+
+  --button-color: #ffc425;                 /* Padres yellow for buttons */
+  --button-text-color: #2f241d;            /* Dark text on yellow */
+  --button-hover-color: #d4a41c;           /* Golden mustard on hover */
+  
+  --modal-box-bg: #ffffff;
+  --modal-text-color: #111111; /* A softer cream with better contrast */
+  --font-heading: 'Rubik', sans-serif;
+  --font-body: 'Rubik', sans-serif;
+
+  --text-shadow:
+    2px 2px 0px var(--dark-color),
+   -1px -1px 0px var(--dark-color),
+    1px -1px 0px var(--dark-color),
+   -1px 1px 0px var(--dark-color),
+    1px 1px 0px var(--dark-color);
+}
+
+/* =====================
+   🔠 TYPOGRAPHY
+   ===================== */
+h1, h2, h3, #cipher-key {
+  color: var(--accent-color);
+  text-shadow: var(--text-shadow);
+  font-family: var(--font-heading);
+  font-weight: bold;
+}
+
+h1 { font-size: 36px; }
+h2, #cipher-key { font-size: 24px; margin-top: 10px; }
+h3 { font-size: 22px; }
+
+textarea, p {
+  font-size: 20px;
+  color: var(--outer-ring-text-color);
+  text-shadow: none;
+}
+
+/* =====================
+   🧩 WHEEL STYLES
+   ===================== */
+
+.outer-ring textPath {
+  fill: var(--outer-ring-text-color);
+}
+
+#inner-ring path {
+  stroke: var(--inner-ring-color);
+}
+
+#inner-ring textPath {
+  fill: var(--inner-ring-text-color);
+}
+
+.outer-ring-text,
+.inner-ring-text {
+  font-size: 17.5px;
+  fill: #ffc425;
+  dominant-baseline: central;
+  text-anchor: middle;
+}
+
+.curved-title textPath {
+  fill: var(--accent-color);
+  font-size: 22px;
+  text-shadow: var(--text-shadow);
+  font-family: var(--font-heading);
+}
+
+.ring-path {
+  fill: none;
+  stroke: var(--outer-ring-color);
+  stroke-width: 35;
+}
+
+/* =====================
+   🧭 LAYOUT & STRUCTURE
+   ===================== */
+body {
+  background-color: var(--bg-color);
+  color: var(--text-color);
+  font-family: var(--font-body);
+  font-weight: bold;
+  text-align: center;
+}
+
+.container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 20px;
+}
+
+.svg-wrapper {
+  position: relative;
+  width: 320px;
+  height: 320px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: -65px;
+}
+
+.container svg {
+  width: 100%;
+  height: 100%;
+}
+
+.svg-curve {
+  display: flex;
+  justify-content: center;
+  margin-bottom: -30px;
+  margin-top: 10px;
+}
+
+.svg-curve svg text {
+  font-size: 18px;
+  fill: var(--outer-ring-text-color);
+}
+
+#inner-ring {
+  transition: transform 0.6s ease;
+  transform-origin: 140px 140px;
+}
+
+#emoji-center {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  font-size: 32px;
+  transform: translate(-50%, -50%);
+  pointer-events: none;
+}
+
+#daily-puzzle {
+  font-size: 1em;
+  line-height: 1;
+  margin-top: 0px;
+  background-color: #ffffff;
+  color: var(--dark-color);
+  word-break: break-word;
+  width: auto;
+  text-align: center;
+  padding: 10px 16px;
+  border-radius: 8px;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.2);
+  font-weight: normal;
+  display: inline-block;
+}
+
+#puzzle-answer-container {
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  gap: 40px;
+  margin-top: 30px;
+}
+
+.puzzle-container, .answer-container {
+  width: 400px;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.input-group {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+}
+
+input[type="text"] {
+  text-transform: uppercase;
+  height: 25px;
+  padding: 5px;
+  font-size: 12px;
+  border: 2px solid var(--dark-color);
+  border-radius: 5px;
+  background-color: #f7f7f7;
+  color: black;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  max-width: 400px;
+}
+/* =====================
+   🎛️ BUTTONS
+   ===================== */
+button {
+  margin-left: 20px;
+  padding: 12px 24px;
+  background: var(--button-color);
+  color: var(--button-text-color);
+  border: none;
+  font-size: 18px;
+  font-weight: bold;
+  cursor: pointer;
+  border-radius: 10px;
+  font-family: 'Fredoka', sans-serif;
+  transition: background 0.3s ease, box-shadow 0.3s ease;
+  box-shadow:
+    0 2px 4px rgba(0, 0, 0, 0.2),
+    0 6px 12px rgba(0, 0, 0, 0.25);
+}
+
+button:hover {
+  background: var(--button-hover-color);
+  box-shadow:
+    0 4px 8px rgba(0, 0, 0, 0.3),
+    0 8px 16px rgba(0, 0, 0, 0.35);
+}
+
+.spin-button {
+  display: block;
+  margin: 0 auto;
+  padding: 10px 20px;
+  font-size: 16px;
+}
+
+.spin-button-cursor:hover {
+  cursor: url('Assets/Baseball-Bat/baseball-bat-64px.png') 0 0, pointer;
+}
+/* 🪄 Modal styling */
+.modal {
+  display: none;
+  position: fixed;
+  z-index: 1000;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.6); /* Overlay */
+  justify-content: center;
+  align-items: center;
+}
+
+.modal-content {
+  background: var(--bg-color);
+  color: var(--text-color);
+  padding: 30px;
+  border-radius: 12px;
+  width: 90%;
+  max-width: 500px;
+  font-family: var(--font-body);
+  font-size: 16px;
+  line-height: 1.6;
+  text-align: left;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.4);
+  position: relative;
+}
+
+.modal-content p {
+  color: var(--modal-text-color);
+  font-size: 16px;
+  font-weight: bold;
+  font-family: var(--font-body);
+}
+
+.modal-content h2,
+.modal-content h3 {
+  color: var(--accent-color);
+  font-family: var(--font-heading);
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+.info-box {
+  background-color: var(--modal-box-bg); 
+  border-radius: 8px;
+  padding: 16px;
+  margin: 10px 0;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.25);
+}
+
+.info-box p {
+  color: var(--modal-text-color);
+  font-weight: bold;
+  font-family: var(--font-body);
+  font-size: 16px;
+  margin: 0;
+}
+.close-btn {
+  position: absolute;
+  top: 10px;
+  right: 16px;
+  font-size: 28px;
+  font-weight: bold;
+  color: var(--accent-color);
+  background: none;
+  border: none;
+  cursor: pointer;
+  font-family: var(--font-heading);
+}
+
+
+.title-wrapper {
+  position: relative;
+  display: inline-block;
+}
+
+#info-btn {
+  position: absolute;
+  top: 3px;
+  right: 10%;
+  font-size: 20px;
+  border: none;
+  background: none;
+  color: var(--accent-color);
+  cursor: pointer;
+  transition: transform 0.2s ease;
+}
+
+#info-btn:hover {
+  transform: scale(1.25);
+}
+.title-wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  position: relative;
+  gap: 8px;
+}
+
+#info-btn {
+  font-size: 14px;
+  font-weight: bold;
+  padding: 6px 12px;
+  border: none;
+  background-color: var(--accent-color);
+  color: var(--button-text-color);
+  border-radius: 6px;
+  font-family: var(--font-heading);
+  line-height: 1.2;
+  cursor: pointer;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.2);
+  transition: transform 0.2s ease;
+}
+
+#info-btn:hover {
+  transform: scale(1.05);
+}
+
+
+/* =====================
+   📢 FEEDBACK MESSAGE
+   ===================== */
+#feedback-reaction {
+  background-color: rgba(0, 0, 0, 0.9);
+  padding: 10px;
+  font-size: 32px;
+  border-radius: 8px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+  width: auto;
+  max-width: 80%;
+  text-align: center;
+  color: white;
+  position: fixed;
+  top: 27%;
+  left: 50%;
+  transform: translate(-50%, -50%) scale(0);
+  display: none;
+  transform-origin: center center;
+  animation-fill-mode: forwards;
+}
+
+/* =====================
+   🎞️ ANIMATIONS
+   ===================== */
+@keyframes popEffect {
+  0% {
+    opacity: 0;
+    transform: translate(-50%, -50%) scale(0);
+  }
+  100% {
+    opacity: 1;
+    transform: translate(-50%, -50%) scale(1);
+  }
+}
+
+@keyframes shakeEffect {
+  0% { transform: translate(-50%, -50%) rotate(0deg); }
+  20% { transform: translate(-48%, -50%) rotate(-2deg); }
+  40% { transform: translate(-52%, -50%) rotate(2deg); }
+  60% { transform: translate(-50%, -50%) rotate(-2deg); }
+  80% { transform: translate(-50%, -52%) rotate(2deg); }
+  100% { transform: translate(-50%, -50%) rotate(0deg); }
+}
