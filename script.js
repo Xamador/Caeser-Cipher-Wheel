@@ -384,6 +384,9 @@ function updateThemeAudio(theme) {
     'theme-padres': [
       'assets/audio/padres/correct-answers/cheer.mp3',
     ],
+    'theme-lightning': [
+      'assets/audio/lightning/correct-answers/horn.mp3',
+    ],
   };
 
   const correctAnswerAudio = themeAudioMap[theme] || themeAudioMap['theme-standard'];
