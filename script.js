@@ -1,7 +1,7 @@
 // ────────────────────────────────────────────────────
 // 📦 Supabase client init — replace with your own creds
 // ────────────────────────────────────────────────────
-import { createClient } from '@supabase/supabase-js'
+import { createClient } from 'https://cdn.jsdelivr.net/npm/@supabase/supabase-js/+esm';
 
 const SUPABASE_URL   = 'https://gbkhmqevevsdegzvmieg.supabase.co'
 const SUPABASE_ANON  = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Imdia2htcWV2ZXZzZGVnenZtaWVnIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NDU2NzE5MzUsImV4cCI6MjA2MTI0NzkzNX0.hu4Nx9KZ4XMGzfki_FGLFNsNp6nvCnwm6ZDJ_uPhotQ'
