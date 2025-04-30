@@ -1,0 +1,786 @@
+/* =====================
+   🎨 THEME VARIABLES
+   ===================== */
+   :root {
+    --bg-color: linear-gradient(180deg, #d3d3d3, #a9a9a9);                     /* Outer ring green as the background */
+    --text-color: #031602;                   /* White for text */
+    --accent-color: #8A9A5B ;                 /* White for accents */
+    --dark-color: #1c140f;                   /* Darker brown for outlines */
+    
+    --bg-gradient: linear-gradient(180deg, #d3d3d3, #a9a9a9); /* Gradient from outer ring green to darker green */
+    --bg-repeat: no-repeat; /* Prevent the gradient from repeating */
+    --bg-size: cover; /* Ensure the gradient covers the entire viewport */
+    
+    --outer-ring-color: #ffffff;             /* Outer ring becomes white */
+    --outer-ring-text-color: #000;        /* Outer ring text becomes white */
+    --inner-ring-color: #ffffff;             /* Inner ring becomes white */
+    --inner-ring-text-color: #000;        /* Inner ring text becomes white */
+  
+    --button-color: #556B2F;                 /* Darker green for buttons */
+    --button-text-color: #FFFFFF;            /* White text on buttons */
+    --button-hover-color: #4B5320 ;           /* Lighter green for hover effect */
+    
+    --modal-box-bg: #ffffff;                 /* White modal background */
+    --modal-text-color: #333333;   
+    --font-heading: 'Rubik', sans-serif;
+    --font-body: 'Rubik', sans-serif;
+  
+    --text-shadow:
+      2px 2px 0px var(--dark-color),
+     -1px -1px 0px var(--dark-color),
+      1px -1px 0px var(--dark-color),
+     -1px 1px 0px var(--dark-color),
+      1px 1px 0px var(--dark-color);
+  }
+
+/* =====================
+   🔠 TYPOGRAPHY
+   ===================== */
+h1, h2, h3, #cipher-key {
+  color: var(--accent-color);
+  text-shadow: var(--text-shadow);
+  font-family: var(--font-heading);
+  font-weight: bold;
+}
+
+h1 { font-size: 36px; }
+h2, #cipher-key { font-size: 24px; margin-top: 10px; }
+h3 { font-size: 22px; }
+
+textarea, p {
+  font-size: 20px;
+  color: var(--outer-ring-text-color);
+  text-shadow: none;
+}
+
+/* =====================
+   🧩 WHEEL STYLES
+   ===================== */
+
+.outer-ring textPath {
+  fill: var(--outer-ring-text-color);
+}
+
+#inner-ring path {
+  stroke: var(--inner-ring-color);
+}
+
+#inner-ring textPath {
+  fill: var(--inner-ring-text-color);
+}
+
+.outer-ring-text,
+.inner-ring-text {
+  font-size: 17.5px;
+  fill: #ffc425;
+  dominant-baseline: central;
+  text-anchor: middle;
+}
+
+.curved-title textPath {
+  fill: var(--accent-color);
+  font-size: 22px;
+  text-shadow: var(--text-shadow);
+  font-family: var(--font-heading);
+}
+
+.ring-path {
+  fill: none;
+  stroke: var(--outer-ring-color);
+  stroke-width: 35;
+}
+
+/* =====================
+   🧭 LAYOUT & STRUCTURE
+   ===================== */
+   html, body {
+    height: 100%; /* Ensure the gradient covers the full height of the page */
+    margin: 0; /* Remove default margin */
+    padding: 0; /* Remove default padding */
+    background: var(--bg-gradient, linear-gradient(#d3d3d3, #a9a9a9)); /* Use the gradient variable */
+    background-repeat: var(--bg-repeat); /* Use the repeat variable */
+    background-size: var(--bg-size); /* Use the size variable */
+    color: var(--text-color); /* Keep the text color consistent */
+    font-family: var(--font-body); /* Use the theme font */
+    font-weight: bold;
+    text-align: center;
+  }
+
+  body.theme-standard {
+    --bg-color: linear-gradient(180deg, #d3d3d3, #a9a9a9);                     /* Outer ring green as the background */
+    --text-color: #031602;                   /* White for text */
+    --accent-color: #8A9A5B ;                 /* White for accents */
+    --dark-color: #1c140f;                   /* Darker brown for outlines */
+    
+    --bg-gradient: linear-gradient(180deg, #d3d3d3, #a9a9a9); /* Gradient from outer ring green to darker green */
+    --bg-repeat: no-repeat; /* Prevent the gradient from repeating */
+    --bg-size: cover; /* Ensure the gradient covers the entire viewport */
+    
+    --outer-ring-color: #ffffff;             /* Outer ring becomes white */
+    --outer-ring-text-color: #000;        /* Outer ring text becomes white */
+    --inner-ring-color: #ffffff;             /* Inner ring becomes white */
+    --inner-ring-text-color: #000;        /* Inner ring text becomes white */
+  
+    --button-color: #556B2F;                 /* Darker green for buttons */
+    --button-text-color: #FFFFFF;            /* White text on buttons */
+    --button-hover-color: #4B5320 ;           /* Lighter green for hover effect */
+    
+    --modal-box-bg: #ffffff;                 /* White modal background */
+    --modal-text-color: #333333;   
+  }
+  body.theme-lightning {
+    --bg-color: #00205B;                     /* Padres brown */
+    --text-color: #FFFFFF;                   /* Cream for body and contrast */
+    --accent-color: #FFFFFF;                 /* Padres yellow */
+    --dark-color: #000000;  
+
+    --bg-gradient: linear-gradient(180deg, #001F38, #00205B);
+    --bg-repeat: no-repeat; /* Prevent the gradient from repeating */
+    --bg-size: cover; /* Ensure the gradient covers the entire viewport */
+
+    --outer-ring-color: #000000;             /* Grass green for outer field ring */
+    --outer-ring-text-color: #FFFFFF;        /* Bright yellow lettering */
+    --inner-ring-color: #00205B;             /* Infield dirt tone (sienna/brown) */
+    --inner-ring-text-color: #FFFFFF;        /* Cream text inside */
+    
+    --button-color: #000000;                 /* Padres yellow for buttons */
+    --button-text-color: #FFFFFF;            /* Dark text on yellow */
+    --button-hover-color: #00205B;           /* Golden mustard on hover */
+
+    --modal-box-bg: #ffffff;
+    --modal-text-color: #111111; /* A softer cream with better contrast */
+    
+  }
+
+
+
+  body.theme-padres {
+    --bg-color: #2f241d;                     /* Padres brown */
+    --text-color: #fdf8e4;                   /* Cream for body and contrast */
+    --accent-color: #ffc425;                 /* Padres yellow */
+    --dark-color: #1c140f;  
+
+    --bg-gradient: linear-gradient(180deg, #2f241d, #1c140f);
+    --bg-repeat: no-repeat; /* Prevent the gradient from repeating */
+    --bg-size: cover; /* Ensure the gradient covers the entire viewport */
+
+    --outer-ring-color: #002d72;             /* Grass green for outer field ring */
+    --outer-ring-text-color: #fdf8e4;        /* Bright yellow lettering */
+    --inner-ring-color: #c8102e;             /* Infield dirt tone (sienna/brown) */
+    --inner-ring-text-color: #fdf8e4;        /* Cream text inside */
+    
+    --button-color: #ffc425;                 /* Padres yellow for buttons */
+    --button-text-color: #2f241d;            /* Dark text on yellow */
+    --button-hover-color: #d4a41c;           /* Golden mustard on hover */
+
+    --modal-box-bg: #ffffff;
+    --modal-text-color: #111111; /* A softer cream with better contrast */
+  }
+
+
+
+.container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 20px;
+}
+
+.svg-wrapper {
+  position: relative;
+  width: 320px;
+  height: 320px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: -65px;
+}
+
+.container svg {
+  width: 100%;
+  height: 100%;
+}
+
+.svg-curve {
+  display: flex;
+  justify-content: center;
+  margin-bottom: -30px;
+  margin-top: 10px;
+}
+
+.svg-curve svg text {
+  font-size: 18px;
+  fill: var(--outer-ring-text-color);
+}
+
+#inner-ring {
+  transition: transform 0.6s ease;
+  transform-origin: 140px 140px;
+}
+
+#emoji-center {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  font-size: 32px;
+  transform: translate(-50%, -50%);
+  pointer-events: none;
+}
+
+#daily-puzzle {
+  font-size: 1em;
+  line-height: 1;
+  margin-top: 0px;
+  background-color: #ffffff;
+  color: var(--dark-color);
+  word-break: break-word;
+  width: auto;
+  text-align: center;
+  padding: 10px 16px;
+  border-radius: 8px;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.2);
+  font-weight: normal;
+  display: inline-block;
+}
+
+#puzzle-answer-container {
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  gap: 40px;
+  margin-top: 30px;
+}
+
+.puzzle-container, .answer-container {
+  width: 400px;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0px; /* Negative gap is not supported in CSS, adjusted to 0px */
+}
+
+.input-group {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px; /* Uniform spacing between the input field, button, and feedback */
+}
+
+input[type="text"] {
+  text-transform: uppercase;
+  height: 25px;
+  padding: 5px;
+  font-size: 12px;
+  border: 2px solid var(--dark-color);
+  border-radius: 5px;
+  background-color: #f7f7f7;
+  color: black;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  max-width: 350px;
+}
+/* =====================
+   🎛️ BUTTONS
+   ===================== */
+button {
+  padding: 10px 20px;
+  background: var(--button-color);
+  color: var(--button-text-color);
+  border: none;
+  font-size: 18px;
+  font-weight: bold;
+  cursor: pointer;
+  border-radius: 10px;
+  font-family: 'Fredoka', sans-serif;
+  transition: background 0.3s ease, box-shadow 0.3s ease;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2), 0 6px 12px rgba(0, 0, 0, 0.25);
+}
+
+button:hover {
+  background: var(--button-hover-color);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3), 0 8px 16px rgba(0, 0, 0, 0.35);
+}
+
+.spin-button {
+  display: block;
+  margin: 0 auto;
+  padding: 10px 20px;
+  font-size: 16px;
+}
+
+/*.spin-button-cursor:hover {
+  cursor: url('Assets/Baseball-Bat/baseball-bat-64px.png') 0 0, pointer;
+} */
+ 
+/* 🪄 Modal styling */
+.modal {
+  display: none;
+  position: fixed;
+  z-index: 1000;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.6); /* Overlay */
+  justify-content: center;
+  align-items: center;
+}
+
+.modal-content {
+  background: var(--bg-color);
+  color: var(--text-color);
+  padding: 30px;
+  border-radius: 12px;
+  width: 90%;
+  max-width: 500px;
+  font-family: var(--font-body);
+  font-size: 16px;
+  line-height: 1.6;
+  text-align: left;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.4);
+  position: relative;
+}
+
+.modal-content p {
+  color: var(--modal-text-color);
+  font-size: 16px;
+  font-weight: bold;
+  font-family: var(--font-body);
+}
+
+.modal-content h2,
+.modal-content h3 {
+  color: var(--accent-color);
+  font-family: var(--font-heading);
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+.info-box {
+  background-color: var(--modal-box-bg); 
+  border-radius: 8px;
+  padding: 16px;
+  margin: 10px 0;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.25);
+}
+
+.info-box p {
+  color: var(--modal-text-color);
+  font-weight: bold;
+  font-family: var(--font-body);
+  font-size: 16px;
+  margin: 0;
+}
+/* Close button styles */
+button.close-theme-btn {
+  position: absolute;
+  top: 10px; /* Adjust as needed */
+  right: 10px; /* Adjust as needed */
+  font-size: 1.5rem;
+  font-weight: bold;
+  color: #666; /* Default text color */
+  background: none; /* Remove any background */
+  border: none; /* Remove any border */
+  box-shadow: none; /* Remove any shadow */
+  padding: 0; /* Remove padding */
+  cursor: pointer;
+  transition: color 0.3s ease; /* Optional hover effect */
+}
+/* Explicitly override hover styles */
+button.close-theme-btn:hover {
+  color: black; /* Change text color on hover */
+  background: none; /* Ensure no background is applied */
+  box-shadow: none; /* Ensure no shadow is applied */
+}
+
+.title-wrapper {
+  position: relative;
+  display: inline-block;
+}
+
+#info-btn {
+  position: fixed; /* Fix the button to the viewport */
+  top: 10px; /* Distance from the top */
+  right: 10%; /* Distance from the right */
+  padding: 6px 12px; /* Adjust padding for better appearance */
+  background-color: var(--button-color); /* Use theme accent color */
+  color: var(--button-text-color); /* Use theme button text color */
+  border: none; /* Remove border */
+  border-radius: 6px; /* Add rounded corners */
+  font-family: var(--font-heading); /* Use theme font */
+  font-size: 14px; /* Adjust font size */
+  font-weight: bold; /* Make text bold */
+  line-height: 1.2; /* Adjust line height */
+  cursor: pointer; /* Add pointer cursor */
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2); /* Add subtle shadow */
+  transition: background-color 0.3s ease, transform 0.2s ease; /* Smooth hover effect */
+  z-index: 1000; /* Ensure it stays above other elements */
+}
+
+#info-btn:hover {
+  background-color: var(--button-hover-color); /* Change background on hover */
+  transform: scale(1.05); /* Slightly enlarge on hover */
+}
+
+.title-wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  position: relative;
+  gap: 8px;
+}
+
+
+/* =====================
+   📢 FEEDBACK MESSAGE
+   ===================== */
+#feedback-reaction {
+  background-color: rgba(0, 0, 0, 0.9);
+  padding: 10px;
+  font-size: 32px;
+  color: var(--accent-color);
+  margin-top: 5px;
+  border-radius: 8px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+  width: auto;
+  max-width: 80%;
+  text-align: center;
+  position: fixed;
+  top: 27%;
+  left: 50%;
+  transform: translate(-50%, -50%) scale(0);
+  display: none;
+  transform-origin: center center;
+  animation-fill-mode: forwards;
+}
+
+/* =====================
+   🎞️ ANIMATIONS
+   ===================== */
+@keyframes popEffect {
+  0% {
+    opacity: 0;
+    transform: translate(-50%, -50%) scale(0);
+  }
+  100% {
+    opacity: 1;
+    transform: translate(-50%, -50%) scale(1);
+  }
+}
+
+@keyframes shakeEffect {
+  0% { transform: translate(-50%, -50%) rotate(0deg); }
+  20% { transform: translate(-48%, -50%) rotate(-2deg); }
+  40% { transform: translate(-52%, -50%) rotate(2deg); }
+  60% { transform: translate(-50%, -50%) rotate(-2deg); }
+  80% { transform: translate(-50%, -52%) rotate(2deg); }
+  100% { transform: translate(-50%, -50%) rotate(0deg); }
+}
+
+/* =====================
+   🎨 THEME PANEL STYLES
+   ===================== */
+#themeContainer {
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 100%;
+  z-index: 9999;
+}
+
+#themePanel {
+  position: absolute;
+  top: 0;
+  left: -250px; /* Hidden by default */
+  width: 250px;
+  height: auto;
+  background: #2f241d; /* Ensure the background is solid brown */
+  color: #333;
+  box-shadow: 2px 0 8px rgba(0, 0, 0, 0.25);
+  transition: left 0.4s ease;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden; /* Prevent content overflow */
+  padding: 0;
+  border-radius: 0 12px 12px 0; /* Rounded right corners */
+}
+
+#themePanel.open {
+  left: 0;
+}
+
+#themeTag {
+  position: fixed; /* Fix the button to the viewport */
+  top: 80px; /* Distance from the top */
+  left: 0; /* Distance from the left */
+  width: 80px; /* Width of the button */
+  height: 40px; /* Height of the button */
+  background: linear-gradient(135deg, #6c757d, #42484e); /* Darker right side */
+  color: white; /* Text color */
+  display: flex; /* Flex container */
+  align-items: center; /* Center items vertically */
+  justify-content: center; /* Center items horizontally */
+  font-size: 1rem; /* Font size */
+  font-weight: bold; /* Font weight */
+  cursor: pointer; /* Pointer cursor */
+  border-bottom-right-radius: 8px; /* Rounded bottom-right corner */
+  border-top-right-radius: 8px; /* Rounded top-right corner */
+  box-shadow: 2px 2px 6px rgba(0, 0, 0, 0.4); /* Stronger shadow for depth */
+  z-index: 10001; /* Ensure it stays above other elements */
+  transition: left 0.4s ease, background 0.3s ease, color 0.3s ease, box-shadow 0.3s ease; /* Smooth hover effect */
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.8); /* Dark shadow for text pop */
+}
+
+.theme-options-container {
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  justify-content: flex-start;
+  height: 100%;
+}
+
+.theme-option {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  margin: 0;
+  padding: 0.5rem 1rem;
+  cursor: pointer;
+  transition: background 0.2s, color 0.2s;
+  color: #333;
+  background: transparent;
+}
+
+.theme-option:hover {
+  background: #e0e0e0;
+  color: #000;
+}
+
+.theme-preview {
+  width: 30px;
+  height: 30px;
+  border-radius: 6px;
+  margin-right: 0.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.7rem;
+  color: #fff;
+  font-weight: bold;
+}
+.theme-option[data-theme="theme-lightning"] {
+  background: #000; /* Lightning yellow to orange gradient */
+  color: #002868; /* Dark text for contrast */
+}
+.theme-option[data-theme="theme-lightning"]:hover {
+  background: #e0e0e0; /* Slightly darker gray on hover */
+  color: #000; /* Darker text on hover */
+}
+.theme-option[data-theme="theme-lightning"]:hover .theme-preview {
+  background-color: #f9f9f9 !important; /* Ensure light gray is applied */
+  color: #333 !important; /* Ensure dark text is applied */
+}
+
+.theme-option[data-theme="theme-padres"] {
+  background: #2f241d; /* Padres brown */
+  color: #ffc425; /* Padres yellow */
+  text-shadow: 
+    2px 2px 0px #1c140f, /* Darker brown for text shadow */
+   -1px -1px 0px #1c140f, 
+    1px -1px 0px #1c140f, 
+   -1px 1px 0px #1c140f, 
+    1px 1px 0px #1c140f;
+}
+
+.theme-option[data-theme="theme-padres"]:hover {
+  background: #ffc425; /* Highlight with Padres yellow */
+  color: #2f241d; /* Text changes to Padres brown */
+  text-shadow: none; /* Remove text-shadow on hover */
+}
+
+/* Default styles for theme-preview */
+.theme-option[data-theme="theme-padres"] .theme-preview {
+  background-color: #ffc425; /* Padres yellow */
+  color: #2f241d; /* Padres brown */
+  text-shadow: none; /* No text-shadow */
+}
+
+/* Hover styles for theme-preview */
+.theme-option[data-theme="theme-padres"]:hover .theme-preview {
+  background-color: #2f241d; /* Swap to Padres brown */
+  color: #ffc425; /* Swap to Padres yellow */
+  text-shadow: none; /* Ensure no text-shadow is applied */
+}
+
+/* Default Theme */
+.theme-option[data-theme="theme-standard"] {
+  background: linear-gradient(180deg, #d3d3d3, #a9a9a9); /* Default background as gradient */
+  color: #8A9A5B; /* Default text color */
+  text-shadow:
+      1.5px 1.5px 0px var(--dark-color),
+     -.60px -.60px 0px var(--dark-color),
+     .60px -.60px 0px var(--dark-color),
+     -.60px .60px 0px var(--dark-color),
+     .60px .60px 0px var(--dark-color);
+}
+
+.theme-option[data-theme="theme-standard"]:hover {
+  background: linear-gradient(180deg, #556B2F, #4B5320); /* Hover background as gradient */
+  color: #ffffff; /* Hover text color */
+}
+
+.theme-option[data-theme="theme-standard"] .theme-preview {
+  background-color: #556B2F; /* Default theme-preview background */
+  color: #fff; /* Default theme-preview text color */
+}
+
+.theme-option[data-theme="theme-standard"]:hover .theme-preview {
+  background-color: #4B5320; /* Hover theme-preview background */
+  color: #FFF; /* Hover theme-preview text color */
+}
+
+/* Space Theme */
+.theme-option[data-theme="theme-space"] {
+  background-color: #1a1a40; /* Default background */
+  color: #ffffff; /* Default text color */
+}
+
+.theme-option[data-theme="theme-space"]:hover {
+  background-color: #2a2a60; /* Hover background */
+  color: #e0e0ff; /* Hover text color */
+}
+
+.theme-option[data-theme="theme-space"] .theme-preview {
+  background-color: #2a2a60; /* Default theme-preview background */
+  color: #ffffff; /* Default theme-preview text color */
+}
+
+.theme-option[data-theme="theme-space"]:hover .theme-preview {
+  background-color: #3a3a80; /* Hover theme-preview background */
+  color: #e0e0ff; /* Hover text color */
+}
+
+/* Ocean Theme */
+.theme-option[data-theme="theme-ocean"] {
+  background-color: #0077be; /* Default background */
+  color: #ffffff; /* Default text color */
+}
+
+.theme-option[data-theme="theme-ocean"]:hover {
+  background-color: #005f9e; /* Hover background */
+  color: #e0f7ff; /* Hover text color */
+}
+
+.theme-option[data-theme="theme-ocean"] .theme-preview {
+  background-color: #005f9e; /* Default theme-preview background */
+  color: #ffffff; /* Default theme-preview text color */
+}
+
+.theme-option[data-theme="theme-ocean"]:hover .theme-preview {
+  background-color: #00477e; /* Hover theme-preview background */
+  color: #e0f7ff; /* Hover text color */
+}
+
+/* Science Theme */
+.theme-option[data-theme="theme-science"] {
+  background-color: #4caf50; /* Default background */
+  color: #ffffff; /* Default text color */
+}
+
+.theme-option[data-theme="theme-science"]:hover {
+  background-color: #388e3c; /* Hover background */
+  color: #d0ffd0; /* Hover text color */
+}
+
+.theme-option[data-theme="theme-science"] .theme-preview {
+  background-color: #388e3c; /* Default theme-preview background */
+  color: #ffffff; /* Default theme-preview text color */
+}
+
+.theme-option[data-theme="theme-science"]:hover .theme-preview {
+  background-color: #2e7d32; /* Hover theme-preview background */
+  color: #d0ffd0; /* Hover text color */
+}
+
+/* Forest Theme */
+.theme-option[data-theme="theme-forest"] {
+  background-color: #2e7d32; /* Default background */
+  color: #ffffff; /* Default text color */
+}
+
+.theme-option[data-theme="theme-forest"]:hover {
+  background-color: #1b5e20; /* Hover background */
+  color: #c8e6c9; /* Hover text color */
+}
+
+.theme-option[data-theme="theme-forest"] .theme-preview {
+  background-color: #1b5e20; /* Default theme-preview background */
+  color: #ffffff; /* Default theme-preview text color */
+}
+
+.theme-option[data-theme="theme-forest"]:hover .theme-preview {
+  background-color: #0d3d14; /* Hover theme-preview background */
+  color: #c8e6c9; /* Hover text color */
+}
+
+/* Animal Theme */
+.theme-option[data-theme="theme-animal"] {
+  background-color: #ff9800; /* Default background */
+  color: #ffffff; /* Default text color */
+}
+
+.theme-option[data-theme="theme-animal"]:hover {
+  background-color: #f57c00; /* Hover background */
+  color: #ffe0b2; /* Hover text color */
+}
+
+.theme-option[data-theme="theme-animal"] .theme-preview {
+  background-color: #f57c00; /* Default theme-preview background */
+  color: #ffffff; /* Default theme-preview text color */
+}
+
+.theme-option[data-theme="theme-animal"]:hover .theme-preview {
+  background-color: #e65100; /* Hover theme-preview background */
+  color: #ffe0b2; /* Hover text color */
+}
+
+/* Tampa Bay Lightning Theme */
+.theme-option[data-theme="theme-lightning"] {
+  background-color: #002868; /* Default background */
+  color: #ffffff; /* Default text color */
+}
+
+.theme-option[data-theme="theme-lightning"]:hover {
+  background-color: #000; /* Hover background */
+  color: #ffffff; /* Hover text color */
+}
+
+.theme-option[data-theme="theme-lightning"] .theme-preview {
+  background-color: #001f4d; /* Default theme-preview background */
+  color: #ffffff; /* Default theme-preview text color */
+}
+
+.theme-option[data-theme="theme-lightning"]:hover .theme-preview {
+  background-color: #00163a; /* Hover theme-preview background */
+  color: #cce7ff; /* Hover text color */
+}
+
+/* Close button for the How to Play Modal */
+span.close-btn#close-info-modal {
+  position: absolute;
+  top: px;
+  right: 10px;
+  font-size: 1.5rem;
+  font-weight: bold;
+  color: var(--text-color); /* Use the accent color */
+  background: none;
+  border: none;
+  cursor: pointer;
+  transition: color 0.3s ease; /* Smooth transition for hover effect */
+}
+
+/* Hover effect for the close button */
+span.close-btn#close-info-modal:hover {
+  color: var(--button-hover-color); /* Change to hover color */
+}
