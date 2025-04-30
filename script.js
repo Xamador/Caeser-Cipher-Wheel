@@ -12,12 +12,12 @@ const supabase      = createClient(SUPABASE_URL, SUPABASE_ANON);
 // ────────────────────────────────────────────────────
 async function fetchPuzzleFromSupabase(theme) {
   const today = new Date().toISOString().slice(0,10);
-  let { data, error } = await supabase
-    .from('puzzles')
-    .select('id, puzzle_data')
-    .eq('theme', theme)
-    .is('date_used', null)
-    .limit(1);
+let { data, error } = await supabase
+  .from('puzzles')
+  .select('id, puzzle_data')
+  .ilike('theme', dbTheme)   // matches regardless of case
+  .is('date_used', null)
+  .limit(1);
   if (error) throw error;
   if (!data || data.length === 0) throw new Error('No unused puzzles for ' + theme);
   const { id, puzzle_data } = data[0];
