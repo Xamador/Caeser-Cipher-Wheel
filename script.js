@@ -3,60 +3,46 @@
 // ────────────────────────────────────────────────────
 import { createClient } from 'https://cdn.jsdelivr.net/npm/@supabase/supabase-js/+esm';
 
-const SUPABASE_URL   = 'https://gbkhmqevevsdegzvmieg.supabase.co'
-const SUPABASE_ANON  = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Imdia2htcWV2ZXZzZGVnenZtaWVnIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NDU2NzE5MzUsImV4cCI6MjA2MTI0NzkzNX0.hu4Nx9KZ4XMGzfki_FGLFNsNp6nvCnwm6ZDJ_uPhotQ'
-const supabase       = createClient(SUPABASE_URL, SUPABASE_ANON)
+const SUPABASE_URL  = 'https://gbkhmqevevsdegzvmieg.supabase.co';
+const SUPABASE_ANON = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Imdia2htcWV2ZXZzZGVnenZtaWVnIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NDU2NzE5MzUsImV4cCI6MjA2MTI0NzkzNX0.hu4Nx9KZ4XMGzfki_FGLFNsNp6nvCnwm6ZDJ_uPhotQ';
+const supabase      = createClient(SUPABASE_URL, SUPABASE_ANON);
 
 // ────────────────────────────────────────────────────
 // 🔄 Fetch + mark-used (via date_used) from Supabase
 // ────────────────────────────────────────────────────
 async function fetchPuzzleFromSupabase(theme) {
   const today = new Date().toISOString().slice(0,10);
-
-  // 1) grab one puzzle for this theme where date_used IS NULL
   let { data, error } = await supabase
     .from('puzzles')
     .select('id, puzzle_data')
     .eq('theme', theme)
     .is('date_used', null)
     .limit(1);
-
   if (error) throw error;
-  if (!data || data.length === 0) throw new Error('No unused puzzles');
-
+  if (!data || data.length === 0) throw new Error('No unused puzzles for ' + theme);
   const { id, puzzle_data } = data[0];
-
-  // 2) mark it used by setting date_used = today
-  supabase
+  await supabase
     .from('puzzles')
     .update({ date_used: today })
-    .eq('id', id)
-    .then(({ error }) => {
-      if (error) console.warn('Failed to set date_used:', error);
-    });
-
+    .eq('id', id);
   return puzzle_data;
 }
 
 // ────────────────────────────────────────────────────
-// 🌐 displayPuzzle now pulls via date_used & puzzle_data
+// 🌐 displayPuzzle now pulls via Supabase & puzzle_data
 // ────────────────────────────────────────────────────
 async function displayPuzzle(theme) {
   let puzzleText;
-
   try {
     puzzleText = await fetchPuzzleFromSupabase(theme);
   } catch (err) {
-    console.warn('Supabase fetch failed or none left, using default:', err);
+    console.warn('Supabase fetch failed, using default:', err);
     puzzleText = getDailyPuzzle(theme);
   }
-
-  // encrypt & render exactly as before
   const shift     = getDailyKey();
   const encrypted = caesarEncrypt(puzzleText, shift);
   document.getElementById('daily-puzzle').textContent = encrypted;
 }
-
 
 
 // ─────────────────────────────────────────────────
