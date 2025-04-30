@@ -11,39 +11,54 @@ const supabase      = createClient(SUPABASE_URL, SUPABASE_ANON);
 // 🔄 Fetch + mark-used (via date_used) from Supabase
 // ────────────────────────────────────────────────────
 async function fetchPuzzleFromSupabase(theme) {
-  const today = new Date().toISOString().slice(0,10);
-let { data, error } = await supabase
-  .from('puzzles')
-  .select('id, puzzle_data')
-  .ilike('theme', dbTheme)   // matches regardless of case
-  .is('date_used', null)
-  .limit(1);
+  // Normalize theme to match your DB (e.g. "Lightning", "Padres")
+  const stripped = theme.replace(/^theme-/, '');
+  const dbTheme = stripped.charAt(0).toUpperCase() + stripped.slice(1).toLowerCase();
+  const today   = new Date().toISOString().slice(0,10);
+
+  // Fetch one unused puzzle for this theme
+  let { data, error } = await supabase
+    .from('puzzles')
+    .select('id, puzzle_data')
+    .eq('theme', dbTheme)
+    .is('date_used', null)
+    .limit(1);
+
   if (error) throw error;
-  if (!data || data.length === 0) throw new Error('No unused puzzles for ' + theme);
+  if (!data || data.length === 0) throw new Error(`No unused puzzles for ${dbTheme}`);
+
   const { id, puzzle_data } = data[0];
+
+  // Mark it used by setting date_used = today
   await supabase
     .from('puzzles')
     .update({ date_used: today })
     .eq('id', id);
+
   return puzzle_data;
 }
 
+// ──────────────────────────────────────────────────────────────────────────────────────────────────────
+// 🌐 displayPuzzle with fallback to defaults
 // ────────────────────────────────────────────────────
-// 🌐 displayPuzzle now pulls via Supabase & puzzle_data
-// ────────────────────────────────────────────────────
+const DB_THEMES = ['theme-lightning', 'theme-padres'];
 async function displayPuzzle(theme) {
   let puzzleText;
-  try {
-    puzzleText = await fetchPuzzleFromSupabase(theme);
-  } catch (err) {
-    console.warn('Supabase fetch failed, using default:', err);
+
+  if (DB_THEMES.includes(theme)) {
+    try {
+      puzzleText = await fetchPuzzleFromSupabase(theme);
+    } catch {
+      puzzleText = getDailyPuzzle(theme);
+    }
+  } else {
     puzzleText = getDailyPuzzle(theme);
   }
+
   const shift     = getDailyKey();
   const encrypted = caesarEncrypt(puzzleText, shift);
   document.getElementById('daily-puzzle').textContent = encrypted;
 }
-
 
 // ─────────────────────────────────────────────────
 // 🎨 Theme-specific labels, emoji, button text, cursors
