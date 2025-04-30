@@ -1,0 +1,636 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Caesar Cipher Wheel</title>
+  <link rel="stylesheet" href="style.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Rubik&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Rock+Salt&display=swap" rel="stylesheet">
+</head>
+<body>
+  <div id="main-content">
+<div class="title-wrapper">
+  <h1>Caesar Cipher Wheel</h1>
+  <button id="info-btn" title="How to play?">How to<br>Play</button>
+</div>
+
+<div class="svg-curve">
+  <svg width="280" height="80">
+    <path id="curve" d="M10,70 Q140,-40 270,70" fill="transparent"/>
+    <text class="curved-title">
+      <textPath href="#curve" startOffset="50%" text-anchor="middle">
+        Standard
+      </textPath>
+    </text>
+  </svg>
+</div>
+
+    <div class="container">
+      <div class="svg-wrapper">
+        <div id="emoji-center"></div>
+        
+<svg height="280" width="280" viewBox="0 0 280 280" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <!-- Donut mask -->
+    <mask id="donut-mask">
+      <rect width="100%" height="100%" fill="white" />
+      <circle cx="140" cy="140" r="55" fill="black" />
+    </mask>
+  </defs>
+
+  <!-- Background circle with center hole -->
+  <circle cx="140" cy="140" r="115" fill="black" mask="url(#donut-mask)" />
+          <!-- SVG content stays here (outer ring + inner ring with letters) -->
+		<g class="outer-ring">
+        <path d="M 150.83528213499517 35.560559839421515 A 105 105 0 0 0 127.3436485731911 35.765568219704335" id="outer-ring-piece-0" class="ring-path">
+        </path>
+        <text transform="rotate(-180, 139.08371377267076, 35.003998078262015)" filter="url(#rock-fill)">
+         <textPath class="outer-ring-text"  href="#outer-ring-piece-0" startoffset="50%">
+          A
+         </textpath>
+        </text>
+       </g>
+       <g class="outer-ring">
+        <path d="M 175.51442252832575 41.18843290140801 A 105 105 0 0 0 152.65635142680895 35.765568219704335" id="outer-ring-piece-1" class="ring-path">
+        </path>
+        <text transform="rotate(-180, 164.2375273325929, 37.83570942446762)">
+         <textPath class="outer-ring-text" href="#outer-ring-piece-1" startoffset="50%">
+          B
+         </textpath>
+        </text>
+       </g>
+       <g class="outer-ring">
+        <path d="M 198.12959377398346 52.55887507773208 A 105 105 0 0 0 177.23351313946623 41.823294518031446" id="outer-ring-piece-2" class="ring-path">
+        </path>
+        <text transform="rotate(-180, 187.98274390377196, 46.604837986836614)">
+         <textPath class="outer-ring-text" href="#outer-ring-piece-2" startoffset="50%">
+          C
+         </textpath>
+        </text>
+       </g>
+       <g class="outer-ring">
+        <path d="M 217.36648432197347 69.01107759898147 A 105 105 0 0 0 199.64679840677135 53.58669408116607" id="outer-ring-piece-3" class="ring-path">
+        </path>
+        <text transform="rotate(-180, 208.93937780944145, 60.80175388780954)">
+         <textPath class="outer-ring-text" href="#outer-ring-piece-3" startoffset="50%">
+          D
+         </textpath>
+        </text>
+       </g>
+       <g class="outer-ring">
+        <path d="M 232.10711601689871 89.58889825594409 A 105 105 0 0 0 218.59362855796564 70.37212088471652" id="outer-ring-piece-4" class="ring-path">
+        </path>
+        <text transform="rotate(-180, 225.8895056612687, 79.60138397891143)">
+         <textPath class="outer-ring-text" href="#outer-ring-piece-4" startoffset="50%">
+          E
+         </textpath>
+        </text>
+       </g>
+       <g class="outer-ring">
+        <path d="M 241.49481692466628 113.09642890937198 A 105 105 0 0 0 232.97288269358705 91.2040669354043" id="outer-ring-piece-5" class="ring-path">
+        </path>
+        <text transform="rotate(-180, 237.84804763971331, 101.91116209312244)">
+         <textPath class="outer-ring-text" href="#outer-ring-piece-5" startoffset="50%">
+          F
+         </textpath>
+        </text>
+       </g>
+       <g class="outer-ring">
+        <path d="M 244.9840079914211 138.16749732408522 A 105 105 0 0 0 241.94889082973546 114.87185524980644" id="outer-ring-piece-6" class="ring-path">
+        </path>
+        <text transform="rotate(-180, 244.1200167525197, 126.43452501918861)">
+         <textPath class="outer-ring-text" href="#outer-ring-piece-6" startoffset="50%">
+          G
+         </textpath>
+        </text>
+       </g>
+       <g class="outer-ring">
+        <path d="M 242.37191011505683 163.34506413344644 A 105 105 0 0 0 245 140.00000000000003" id="outer-ring-piece-7" class="ring-path">
+        </path>
+        <text transform="rotate(-180, 244.34090895253155, 151.74626404264424)">
+         <textPath class="outer-ring-text" href="#outer-ring-piece-7" startoffset="50%">
+          H
+         </textpath>
+        </text>
+       </g>
+       <g class="outer-ring">
+        <path d="M 233.81032892955835 187.16590067122718 A 105 105 0 0 0 241.94889082973546 165.12814475019357" id="outer-ring-piece-8" class="ring-path">
+        </path>
+        <text transform="rotate(-180, 238.4978867879948, 176.37535289587396)">
+         <textPath class="outer-ring-text" href="#outer-ring-piece-8" startoffset="50%">
+          I
+         </textpath>
+        </text>
+       </g>
+       <g class="outer-ring">
+        <path d="M 219.7968324133454 208.24562650306953 A 105 105 0 0 0 232.97288269358705 188.79593306459572" id="outer-ring-piece-9" class="ring-path">
+        </path>
+        <text transform="rotate(-180, 226.93052546859076, 198.89043845782348)">
+         <textPath class="outer-ring-text" href="#outer-ring-piece-9" startoffset="50%">
+          J
+         </textpath>
+        </text>
+       </g>
+       <g class="outer-ring">
+        <path d="M 201.14583404695304 225.35916458531256 A 105 105 0 0 0 218.59362855796564 209.62787911528346" id="outer-ring-piece-10" class="ring-path">
+        </path>
+        <text transform="rotate(-180, 210.31107798855567, 217.98302579463845)">
+         <textPath class="outer-ring-text" href="#outer-ring-piece-10" startoffset="50%">
+          K
+         </textpath>
+        </text>
+       </g>
+       <g class="outer-ring">
+        <path d="M 178.9412620618153 237.5119382897962 A 105 105 0 0 0 199.64679840677135 226.41330591883394" id="outer-ring-piece-11" class="ring-path">
+        </path>
+        <text transform="rotate(-180, 189.6054062261954, 232.54352312903444)">
+         <textPath class="outer-ring-text" href="#outer-ring-piece-11" startoffset="50%">
+          L
+         </textpath>
+        </text>
+       </g>
+       <g class="outer-ring">
+        <path d="M 154.4735654713732 243.99767258235096 A 105 105 0 0 0 177.23351313946623 238.17670548196855" id="outer-ring-piece-12" class="ring-path">
+        </path>
+        <text transform="rotate(-180, 166.01684856228394, 241.7257272811907)">
+         <textPath class="outer-ring-text" href="#outer-ring-piece-12" startoffset="50%">
+          M
+         </textpath>
+        </text>
+       </g>
+       <g class="outer-ring">
+        <path d="M 129.1647178650048 244.4394401605785 A 105 105 0 0 0 152.65635142680895 244.23443178029567" id="outer-ring-piece-13" class="ring-path">
+        </path>
+        <text transform="rotate(-180, 140.91628622732927, 244.99600192173799)">
+         <textPath class="outer-ring-text" href="#outer-ring-piece-13" startoffset="50%">
+          N
+         </textpath>
+        </text>
+       </g>
+       <g class="outer-ring">
+        <path d="M 104.48557747167422 238.81156709859198 A 105 105 0 0 0 127.34364857319108 244.23443178029567" id="outer-ring-piece-14" class="ring-path">
+        </path>
+        <text transform="rotate(-180, 115.76247266740708, 242.16429057553236)">
+         <textPath class="outer-ring-text" href="#outer-ring-piece-14" startoffset="50%">
+          O
+         </textpath>
+        </text>
+       </g>
+       <g class="outer-ring">
+        <path d="M 81.87040622601651 227.4411249222679 A 105 105 0 0 0 102.76648686053375 238.17670548196855" id="outer-ring-piece-15" class="ring-path">
+        </path>
+        <text transform="rotate(-180, 92.01725609622804, 233.39516201316337)">
+         <textPath class="outer-ring-text" href="#outer-ring-piece-15" startoffset="50%">
+          P
+         </textpath>
+        </text>
+       </g>
+       <g class="outer-ring">
+        <path d="M 62.63351567802651 210.9889224010185 A 105 105 0 0 0 80.35320159322865 226.41330591883394" id="outer-ring-piece-16" class="ring-path">
+        </path>
+        <text transform="rotate(-180, 71.06062219055855, 219.19824611219047)">
+         <textPath class="outer-ring-text" href="#outer-ring-piece-16" startoffset="50%">
+          Q
+         </textpath>
+        </text>
+       </g>
+       <g class="outer-ring">
+        <path d="M 47.89288398310127 190.4111017440559 A 105 105 0 0 0 61.40637144203437 209.6278791152835" id="outer-ring-piece-17" class="ring-path">
+        </path>
+        <text transform="rotate(-180, 54.11049433873133, 200.39861602108857)">
+         <textPath class="outer-ring-text" href="#outer-ring-piece-17" startoffset="50%">
+          R
+         </textpath>
+        </text>
+       </g>
+       <g class="outer-ring">
+        <path d="M 38.50518307533372 166.90357109062802 A 105 105 0 0 0 47.02711730641299 188.79593306459574" id="outer-ring-piece-18" class="ring-path">
+        </path>
+        <text transform="rotate(-180, 42.151952360286685, 178.08883790687756)">
+         <textPath class="outer-ring-text" href="#outer-ring-piece-18" startoffset="50%">
+          S
+         </textpath>
+        </text>
+       </g>
+       <g class="outer-ring">
+        <path d="M 35.01599200857892 141.83250267591475 A 105 105 0 0 0 38.051109170264525 165.1281447501935" id="outer-ring-piece-19" class="ring-path">
+        </path>
+        <text transform="rotate(-180, 35.87998324748031, 153.5654749808114)">
+         <textPath class="outer-ring-text" href="#outer-ring-piece-19" startoffset="50%">
+          T
+         </textpath>
+        </text>
+       </g>
+       <g class="outer-ring">
+        <path d="M 37.62808988494315 116.65493586655369 A 105 105 0 0 0 35 140" id="outer-ring-piece-20" class="ring-path">
+        </path>
+        <text transform="rotate(-180, 35.65909104746842, 128.2537359573558)">
+         <textPath class="outer-ring-text" href="#outer-ring-piece-20" startoffset="50%">
+          U
+         </textpath>
+        </text>
+       </g>
+       <g class="outer-ring">
+        <path d="M 46.189671070441634 92.83409932877285 A 105 105 0 0 0 38.05110917026454 114.87185524980643" id="outer-ring-piece-21" class="ring-path">
+        </path>
+        <text transform="rotate(-180, 41.50211321200524, 103.62464710412604)">
+         <textPath class="outer-ring-text" href="#outer-ring-piece-21" startoffset="50%">
+          V
+         </textpath>
+        </text>
+       </g>
+       <g class="outer-ring">
+        <path d="M 60.2031675866546 71.75437349693046 A 105 105 0 0 0 47.02711730641299 91.20406693540427" id="outer-ring-piece-22" class="ring-path">
+        </path>
+        <text transform="rotate(-180, 53.06947453140927, 81.1095615421765)">
+         <textPath class="outer-ring-text" href="#outer-ring-piece-22" startoffset="50%">
+          W
+         </textpath>
+        </text>
+       </g>
+       <g class="outer-ring">
+        <path d="M 78.85416595304687 54.64083541468749 A 105 105 0 0 0 61.4063714420344 70.3721208847165" id="outer-ring-piece-23" class="ring-path">
+        </path>
+        <text transform="rotate(-180, 69.68892201144435, 62.016974205361564)">
+         <textPath class="outer-ring-text" href="#outer-ring-piece-23" startoffset="50%">
+          X
+         </textpath>
+        </text>
+       </g>
+       <g class="outer-ring">
+        <path d="M 101.05873793818466 42.48806171020381 A 105 105 0 0 0 80.35320159322862 53.58669408116609" id="outer-ring-piece-24" class="ring-path">
+        </path>
+        <text transform="rotate(-180, 90.39459377380456, 47.456476870965574)">
+         <textPath class="outer-ring-text" href="#outer-ring-piece-24" startoffset="50%">
+          Y
+         </textpath>
+        </text>
+       </g>
+       <g class="outer-ring">
+        <path d="M 125.52643452862684 36.00232741764904 A 105 105 0 0 0 102.76648686053382 41.82329451803142" id="outer-ring-piece-25" class="ring-path">
+        </path>
+        <text transform="rotate(-180, 113.9831514377161, 38.2742727188093)">
+         <textPath class="outer-ring-text" href="#outer-ring-piece-25" startoffset="50%">
+          Z
+         </textpath>
+        </text>
+       </g>
+       <g id="inner-ring" transform="rotate(0, 140, 140)">
+        <g class="inner-ring-segment">
+         <path d="M 147.04293338774687 72.11436389562398 A 68.25 68.25 0 0 0 131.7733715725742 72.24761934280782" id="inner-ring-piece-0" class="ring-path">
+         </path>
+         <text transform="rotate(-180, 139.40441395223598, 71.7525987508703)">
+          <textPath class="inner-ring-text" href="#inner-ring-piece-0" startoffset="50%">
+           B
+          </textpath>
+         </text>
+        </g>
+        <g class="inner-ring-segment">
+         <path d="M 163.08437464341173 75.7724813859152 A 68.25 68.25 0 0 0 148.22662842742582 72.24761934280782" id="inner-ring-piece-1" class="ring-path">
+         </path>
+         <text transform="rotate(-180, 155.75439276618536, 73.59321112590395)">
+          <textPath class="inner-ring-text" href="#inner-ring-piece-1" startoffset="50%">
+           C
+          </textpath>
+         </text>
+        </g>
+        <g class="inner-ring-segment">
+         <path d="M 177.78423595308925 83.16326880052586 A 68.25 68.25 0 0 0 164.20178354065305 76.18514143672044" id="inner-ring-piece-2" class="ring-path">
+         </path>
+         <text transform="rotate(-180, 171.18878353745177, 79.29314469144381)">
+          <textPath class="inner-ring-text" href="#inner-ring-piece-2" startoffset="50%">
+           D
+          </textpath>
+         </text>
+        </g>
+        <g class="inner-ring-segment">
+         <path d="M 190.28821480928278 93.85720043933796 A 68.25 68.25 0 0 0 178.7704189644014 83.83135115275795" id="inner-ring-piece-3" class="ring-path">
+         </path>
+         <text transform="rotate(-180, 184.81059557613693, 88.5211400270762)">
+          <textPath class="inner-ring-text" href="#inner-ring-piece-3" startoffset="50%">
+           E
+          </textpath>
+         </text>
+        </g>
+        <g class="inner-ring-segment">
+         <path d="M 199.86962541098418 107.23278386636366 A 68.25 68.25 0 0 0 191.08585856267766 94.74187857506573" id="inner-ring-piece-4" class="ring-path">
+         </path>
+         <text transform="rotate(-180, 195.82817867982465, 100.74089958629241)">
+          <textPath class="inner-ring-text" href="#inner-ring-piece-4" startoffset="50%">
+           F
+          </textpath>
+         </text>
+        </g>
+        <g class="inner-ring-segment">
+         <path d="M 205.97163100103307 122.51267879109179 A 68.25 68.25 0 0 0 200.43237375083157 108.2826435080128" id="inner-ring-piece-5" class="ring-path">
+         </path>
+         <text transform="rotate(-180, 203.60123096581367, 115.24225536052958)">
+          <textPath class="inner-ring-text" href="#inner-ring-piece-5" startoffset="50%">
+           G
+          </textpath>
+         </text>
+        </g>
+        <g class="inner-ring-segment">
+         <path d="M 208.2396051944237 138.8088732606554 A 68.25 68.25 0 0 0 206.26677903932804 123.6667059123742" id="inner-ring-piece-6" class="ring-path">
+         </path>
+         <text transform="rotate(-180, 207.6780108891378, 131.1824412624726)">
+          <textPath class="inner-ring-text" href="#inner-ring-piece-6" startoffset="50%">
+           H
+          </textpath>
+         </text>
+        </g>
+        <g class="inner-ring-segment">
+         <path d="M 206.54174157478695 155.1742916867402 A 68.25 68.25 0 0 0 208.25 140.00000000000003" id="inner-ring-piece-7" class="ring-path">
+         </path>
+         <text transform="rotate(-180, 207.8215908191455, 147.63507162771876)">
+          <textPath class="inner-ring-text" href="#inner-ring-piece-7" startoffset="50%">
+           I
+          </textpath>
+         </text>
+        </g>
+        <g class="inner-ring-segment">
+         <path d="M 200.97671380421292 170.65783543629766 A 68.25 68.25 0 0 0 206.26677903932804 156.33329408762583" id="inner-ring-piece-8" class="ring-path">
+         </path>
+         <text transform="rotate(-180, 204.02362641219662, 163.64397938231807)">
+          <textPath class="inner-ring-text" href="#inner-ring-piece-8" startoffset="50%">
+           J
+          </textpath>
+         </text>
+        </g>
+        <g class="inner-ring-segment">
+         <path d="M 191.86794106867453 184.35965722699518 A 68.25 68.25 0 0 0 200.43237375083157 171.7173564919872" id="inner-ring-piece-9" class="ring-path">
+         </path>
+         <text transform="rotate(-180, 196.504841554584, 178.27878499758526)">
+          <textPath class="inner-ring-text" href="#inner-ring-piece-9" startoffset="50%">
+           K
+          </textpath>
+         </text>
+        </g>
+        <g class="inner-ring-segment">
+         <path d="M 179.7447921305195 195.48345698045316 A 68.25 68.25 0 0 0 191.08585856267769 185.25812142493425" id="inner-ring-piece-10" class="ring-path">
+         </path>
+         <text transform="rotate(-180, 185.70220069256118, 190.688966766515)">
+          <textPath class="inner-ring-text" href="#inner-ring-piece-10" startoffset="50%">
+           L
+          </textpath>
+         </text>
+        </g>
+        <g class="inner-ring-segment">
+         <path d="M 165.31182034017993 203.38275988836753 A 68.25 68.25 0 0 0 178.7704189644014 196.16864884724205" id="inner-ring-piece-11" class="ring-path">
+         </path>
+         <text transform="rotate(-180, 172.24351404702702, 200.1532900338724)">
+          <textPath class="inner-ring-text" href="#inner-ring-piece-11" startoffset="50%">
+           M
+          </textpath>
+         </text>
+        </g>
+        <g class="inner-ring-segment">
+         <path d="M 149.4078175563926 207.59848717852813 A 68.25 68.25 0 0 0 164.20178354065305 203.81485856327956" id="inner-ring-piece-12" class="ring-path">
+         </path>
+         <text transform="rotate(-180, 156.91095156548457, 206.12172273277395)">
+          <textPath class="inner-ring-text" href="#inner-ring-piece-12" startoffset="50%">
+           N
+          </textpath>
+         </text>
+        </g>
+        <g class="inner-ring-segment">
+         <path d="M 132.95706661225313 207.885636104376 A 68.25 68.25 0 0 0 148.22662842742582 207.7523806571922" id="inner-ring-piece-13" class="ring-path">
+         </path>
+         <text transform="rotate(-180, 140.59558604776402, 208.2474012491297)">
+          <textPath class="inner-ring-text" href="#inner-ring-piece-13" startoffset="50%">
+           O
+          </textpath>
+         </text>
+        </g>
+        <g class="inner-ring-segment">
+         <path d="M 116.91562535658824 204.2275186140848 A 68.25 68.25 0 0 0 131.7733715725742 207.7523806571922" id="inner-ring-piece-14" class="ring-path">
+         </path>
+         <text transform="rotate(-180, 124.24560723381461, 206.40678887409604)">
+          <textPath class="inner-ring-text" href="#inner-ring-piece-14" startoffset="50%">
+           P
+          </textpath>
+         </text>
+        </g>
+        <g class="inner-ring-segment">
+         <path d="M 102.21576404691072 196.83673119947412 A 68.25 68.25 0 0 0 115.79821645934695 203.81485856327956" id="inner-ring-piece-15" class="ring-path">
+         </path>
+         <text transform="rotate(-180, 108.81121646254823, 200.7068553085562)">
+          <textPath class="inner-ring-text" href="#inner-ring-piece-15" startoffset="50%">
+           Q
+          </textpath>
+         </text>
+        </g>
+        <g class="inner-ring-segment">
+         <path d="M 89.71178519071722 186.14279956066204 A 68.25 68.25 0 0 0 101.22958103559861 196.16864884724205" id="inner-ring-piece-16" class="ring-path">
+         </path>
+         <text transform="rotate(-180, 95.18940442386305, 191.4788599729238)">
+          <textPath class="inner-ring-text" href="#inner-ring-piece-16" startoffset="50%">
+           R
+          </textpath>
+         </text>
+        </g>
+        <g class="inner-ring-segment">
+         <path d="M 80.13037458901582 172.76721613363634 A 68.25 68.25 0 0 0 88.91414143732234 185.25812142493427" id="inner-ring-piece-17" class="ring-path">
+         </path>
+         <text transform="rotate(-180, 84.17182132017537, 179.25910041370759)">
+          <textPath class="inner-ring-text" href="#inner-ring-piece-17" startoffset="50%">
+           S
+          </textpath>
+         </text>
+        </g>
+        <g class="inner-ring-segment">
+         <path d="M 74.02836899896691 157.4873212089082 A 68.25 68.25 0 0 0 79.56762624916846 171.71735649198723" id="inner-ring-piece-18" class="ring-path">
+         </path>
+         <text transform="rotate(-180, 76.39876903418634, 164.75774463947042)">
+          <textPath class="inner-ring-text" href="#inner-ring-piece-18" startoffset="50%">
+           T
+          </textpath>
+         </text>
+        </g>
+        <g class="inner-ring-segment">
+         <path d="M 71.7603948055763 141.19112673934458 A 68.25 68.25 0 0 0 73.73322096067194 156.33329408762577" id="inner-ring-piece-19" class="ring-path">
+         </path>
+         <text transform="rotate(-180, 72.3219891108622, 148.8175587375274)">
+          <textPath class="inner-ring-text" href="#inner-ring-piece-19" startoffset="50%">
+           U
+          </textpath>
+         </text>
+        </g>
+        <g class="inner-ring-segment">
+         <path d="M 73.45825842521305 124.8257083132599 A 68.25 68.25 0 0 0 71.75 140" id="inner-ring-piece-20" class="ring-path">
+         </path>
+         <text transform="rotate(-180, 72.17840918085447, 132.36492837228127)">
+          <textPath class="inner-ring-text" href="#inner-ring-piece-20" startoffset="50%">
+           V
+          </textpath>
+         </text>
+        </g>
+        <g class="inner-ring-segment">
+         <path d="M 79.02328619578707 109.34216456370234 A 68.25 68.25 0 0 0 73.73322096067196 123.66670591237417" id="inner-ring-piece-21" class="ring-path">
+         </path>
+         <text transform="rotate(-180, 75.97637358780341, 116.35602061768193)">
+          <textPath class="inner-ring-text" href="#inner-ring-piece-21" startoffset="50%">
+           W
+          </textpath>
+         </text>
+        </g>
+        <g class="inner-ring-segment">
+         <path d="M 88.1320589313255 95.64034277300479 A 68.25 68.25 0 0 0 79.56762624916844 108.28264350801277" id="inner-ring-piece-22" class="ring-path">
+         </path>
+         <text transform="rotate(-180, 83.49515844541602, 101.72121500241471)">
+          <textPath class="inner-ring-text" href="#inner-ring-piece-22" startoffset="50%">
+           X
+          </textpath>
+         </text>
+        </g>
+        <g class="inner-ring-segment">
+         <path d="M 100.25520786948047 84.51654301954687 A 68.25 68.25 0 0 0 88.91414143732236 94.74187857506573" id="inner-ring-piece-23" class="ring-path">
+         </path>
+         <text transform="rotate(-180, 94.29779930743882, 89.31103323348502)">
+          <textPath class="inner-ring-text" href="#inner-ring-piece-23" startoffset="50%">
+           Y
+          </textpath>
+         </text>
+        </g>
+        <g class="inner-ring-segment">
+         <path d="M 114.68817965982004 76.61724011163247 A 68.25 68.25 0 0 0 101.22958103559861 83.83135115275795" id="inner-ring-piece-24" class="ring-path">
+         </path>
+         <text transform="rotate(-180, 107.75648595297295, 79.84670996612763)">
+          <textPath class="inner-ring-text" href="#inner-ring-piece-24" startoffset="50%">
+           Z
+          </textpath>
+         </text>
+        </g>
+        <g class="inner-ring-segment">
+         <path d="M 130.59218244360744 72.40151282147187 A 68.25 68.25 0 0 0 115.79821645934697 76.18514143672041" id="inner-ring-piece-25" class="ring-path">
+         </path>
+         <text transform="rotate(-180, 123.08904843451546, 73.87827726722604)">
+          <textPath class="inner-ring-text" href="#inner-ring-piece-25" startoffset="50%">
+           A
+          </textpath>
+         </text>
+        </g>
+       </g>
+        </svg>
+		
+      </div>
+	  
+    </div>
+
+    <button class="spin-button-cursor spin-button" onclick="rotateInnerRing()">
+      Spin the Wheel
+    </button>
+    <h2 id="cipher-key"></h2>
+    <div id="puzzle-answer-container">
+      <div class="puzzle-container">
+        <h2>Today's Puzzle</h2>
+        <p id="daily-puzzle"></p>
+      </div>
+      <div class="answer-container">
+        <h2>Your Answer</h2>
+        <div class="input-group">
+          <input id="user-answer" type="text" placeholder="Type your answer here..." />
+          <button onclick="checkAnswer()">Check Answer</button>
+          <p id="feedback-reaction"></p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Theme Panel -->
+  <div id="themeContainer">
+    <div id="themePanel">
+      <div class="close-btn-wrapper">
+    <!-- Close button for the Themes Panel -->
+<button class="close-theme-btn" id="close-theme-panel">&times;</button>
+      </div>
+      <div class="theme-options-container">
+        <div class="theme-option" data-theme="theme-standard"> <!-- Updated -->
+          <div class="theme-preview">Aa</div>
+          Standard
+        </div>
+        <div class="theme-option" data-theme="theme-space">
+          <div class="theme-preview">Aa</div>
+          Space
+        </div>
+        <div class="theme-option" data-theme="theme-ocean">
+          <div class="theme-preview">Aa</div>
+          Ocean
+        </div>
+        <div class="theme-option" data-theme="theme-science">
+          <div class="theme-preview">Aa</div>
+          Science
+        </div>
+        <div class="theme-option" data-theme="theme-forest">
+          <div class="theme-preview">Aa</div>
+          Forest
+        </div>
+        <div class="theme-option" data-theme="theme-animal">
+          <div class="theme-preview">Aa</div>
+          Animal
+        </div>
+        <div class="theme-option" data-theme="theme-lightning">
+          <div class="theme-preview">Aa</div>
+          Tampa Bay Lightning
+        </div>
+        <div class="theme-option" data-theme="theme-padres">
+          <div class="theme-preview">Aa</div>
+          San Diego Padres
+        </div>
+      </div>
+    </div>
+    <div id="themeTag">Themes</div>
+  </div>
+
+  <audio id="theme-success-sound" preload="auto" style="display:none;">
+    <source id="theme-success-audio-source" src="assets/audio/standard/correct-answers/success3.mp3" type="audio/mpeg" />
+  </audio>
+  
+  <audio id="theme-wrong-sound" preload="auto" style="display:none;">
+    <source id="theme-wrong-audio-source" src="assets/audio/wrong-answers/No.mp3" type="audio/mpeg" />
+  </audio>
+
+  <script src="script.js" defer></script>
+<div id="info-modal" class="modal">
+  <div class="modal-content">
+    <span class="close-btn" id="close-info-modal">&times;</span>
+<h2>How to Use the Caesar Cipher Wheel</h2>
+<div class="info-box">
+  <p><strong>Step 1: Match the Letters</strong><br>
+  Look at the key. If it says “C = A”, spin the inside wheel until the letter C lines up with A on the outside wheel.
+  </p>
+
+  <p><strong>Step 2: Crack the Code</strong><br>
+  Find each letter from the puzzle on the outside wheel. Then, look at the letter it points to on the inside wheel. That’s the real letter!
+  </p>
+
+  <p><strong>Step 3: Solve It!</strong><br>
+  Keep going until you figure out the full sentence. Then type your answer and press “Check Answer.”
+  </p>
+</div>
+
+
+
+<h3>What is the Caesar Cipher Wheel?</h3>
+<div class="info-box">
+  <p>
+    The Caesar Cipher is one of the oldest secret codes in history. It was used over 2,000 years ago by Julius Caesar to send hidden messages to his army.
+    Instead of writing messages in plain letters, he would shift the alphabet so no one else could read them unless they knew the trick.
+  </p>
+
+  <p>
+    The Caesar Cipher Wheel is a simple tool to help you use that same trick — by spinning letters to hide (or reveal) a message.
+  </p>
+
+  <p>
+    <strong>Bonus fact:</strong> A modern version called <em>ROT13</em> works by shifting letters 13 places.
+    It's still used online today to hide jokes, spoilers, and puzzles!
+  </p>
+</div>
+
+  </div>
+</div>
+
+</body>
+</html>
